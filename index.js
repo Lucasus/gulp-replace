@@ -9,7 +9,7 @@ module.exports = function(search, replacement, options) {
   return new Transform({
     objectMode: true,
     transform: function(file, enc, callback) {
-      if (file.sourceMap) {
+      if (options && file.sourceMap) {
         options.makeSourceMaps = true;
       }
 
@@ -26,7 +26,14 @@ module.exports = function(search, replacement, options) {
 
         if (file.isBuffer()) {
           if (search instanceof RegExp) {
+            var replacer = new Replacer(search,replacement);
+            var result = replacer.replace(file.contents, file.relative);
+           
             file.contents = new Buffer(String(file.contents).replace(search, replacement));
+
+            if (file.sourceMap) {
+               applySourceMap(file, result.map);
+            }
           }
           else {
             var chunks = String(file.contents).split(search);
@@ -54,10 +61,6 @@ module.exports = function(search, replacement, options) {
             }
 
             file.contents = new Buffer(result);
-
-            if (file.sourceMap) {
-               applySourceMap(file, result.map);
-            }
           }
           return callback(null, file);
         }

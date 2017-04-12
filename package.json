@@ -5,6 +5,7 @@
   "dependencies": {
     "istextorbinary": "1.0.2",
     "readable-stream": "^2.0.1",
+    "regexp-sourcemaps": "^1.0.1",
     "replacestream": "^4.0.0",
     "vinyl-sourcemaps-apply": "^0.2.1"
   },
