@@ -3,16 +3,22 @@
 var Transform = require('readable-stream/transform');
 var rs = require('replacestream');
 var istextorbinary = require('istextorbinary');
+var applySourceMap = require('vinyl-sourcemaps-apply');
 
 module.exports = function(search, replacement, options) {
   return new Transform({
     objectMode: true,
     transform: function(file, enc, callback) {
+      if (file.sourceMap) {
+        options.makeSourceMaps = true;
+      }
+
       if (file.isNull()) {
         return callback(null, file);
       }
 
       function doReplace() {
+        
         if (file.isStream()) {
           file.contents = file.contents.pipe(rs(search, replacement));
           return callback(null, file);
@@ -48,6 +54,10 @@ module.exports = function(search, replacement, options) {
             }
 
             file.contents = new Buffer(result);
+
+            if (file.sourceMap) {
+               applySourceMap(file, result.map);
+            }
           }
           return callback(null, file);
         }

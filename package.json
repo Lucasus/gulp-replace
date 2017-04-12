@@ -1,11 +1,12 @@
 {
-  "name": "gulp-replace",
+  "name": "gulp-replace-with-sourcemaps",
   "version": "0.5.4",
   "description": "A string replace plugin for gulp",
   "dependencies": {
     "istextorbinary": "1.0.2",
     "readable-stream": "^2.0.1",
-    "replacestream": "^4.0.0"
+    "replacestream": "^4.0.0",
+    "vinyl-sourcemaps-apply": "^0.2.1"
   },
   "devDependencies": {
     "concat-stream": "^1.5.2",
@@ -18,16 +19,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/lazd/gulp-replace.git"
+    "url": "git://github.com/Lucasus/gulp-replace-with-sourcemaps.git"
   },
   "keywords": [
     "gulpplugin",
-    "replace"
+    "replace",
+    "sourcemaps"
   ],
-  "author": "Larry Davis <lazdnet@gmail.com>",
+  "author": "Łukasz Wiatrak <lukasz.wiatrak@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lazd/gulp-replace/issues"
+    "url": "https://github.com/Lucasus/gulp-replace-with-sourcemaps/issues"
   },
   "engines": {
     "node": ">=0.10"
