@@ -1,4 +1,4 @@
-# gulp-replace-with-sourcemaps [![NPM version]][npm-url]
+# gulp-replace-with-sourcemaps
 > A string replace plugin for gulp 3
 
 ## Usage

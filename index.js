@@ -31,7 +31,7 @@ module.exports = function(search, replacementParameter, options) {
             }
 
             var contentAfterReplacement = file.contents.toString('utf8').replace(search, replacement);
-            file.contents = new Buffer(replaced);
+            file.contents = new Buffer(contentAfterReplacement);
 
             if (file.sourceMap) {
                var replacer = new Replacer(search,replacement);
