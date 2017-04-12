@@ -4,6 +4,7 @@ var Transform = require('readable-stream/transform');
 var rs = require('replacestream');
 var istextorbinary = require('istextorbinary');
 var applySourceMap = require('vinyl-sourcemaps-apply');
+var Replacer = require('regexp-sourcemaps');
 
 module.exports = function(search, replacement, options) {
   return new Transform({
@@ -27,7 +28,7 @@ module.exports = function(search, replacement, options) {
         if (file.isBuffer()) {
           if (search instanceof RegExp) {
             var replacer = new Replacer(search,replacement);
-            var result = replacer.replace(file.contents, file.relative);
+            var result = replacer.replace(file.contents.toString('utf8'), file.relative);
            
             file.contents = new Buffer(String(file.contents).replace(search, replacement));
 
